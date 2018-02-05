@@ -12,9 +12,11 @@ public class LoadMoreDelegate {
     public interface LoadMoreSubject{
         void onLoadMore();
         boolean isLoading();
+//        void noMoreData();
     }
 
     private LoadMoreSubject loadMoreSubject;
+    private boolean noMoreData = false;
 
     public LoadMoreDelegate(LoadMoreSubject loadMoreSubject) {
         this.loadMoreSubject = loadMoreSubject;

@@ -24,7 +24,7 @@ public class MoviesModel implements MoviesContract.Model {
 
     private OnMoviesListener listener;
     private MoviesListApi api;
-    private int offset;
+    private int offset = 0;
 
     public MoviesModel() {
         api = NetworkHelper.getInstance().createApi(MoviesListApi.class);
