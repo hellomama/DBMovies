@@ -1,4 +1,4 @@
-package com.tony.dbmovie.view.binder;
+package com.tony.dbmovie.ui.binder;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.Cast;
 import com.tony.dbmovie.data.Director;
@@ -52,11 +53,17 @@ public class MoviesListBinder extends ItemViewBinder<Movie, MoviesListBinder.Mov
 
     @Override
     protected void onBindViewHolder(@NonNull MoviesViewHolder holder, @NonNull Movie item) {
-        holder.ratingBar.setRating(Float.parseFloat(String.valueOf(item.getRating().getAverage())));
+        holder.ratingBar.setRating(Float.parseFloat(String.valueOf(item.getRating().getAverage()))/2);
         holder.ratingPoint.setText(String.valueOf(item.getRating().getAverage()));
         holder.title.setText(item.getTitle());
         holder.director.setText(formatDirector(item.getDirectors()));
         holder.cast.setText(formatCast(item.getCasts()));
+        Glide.with(holder.poster.getContext()).load(item.getImages().getMedium()).into(holder.poster);
+    }
+
+    @Override
+    protected boolean onFailedToRecycleView(@NonNull MoviesViewHolder holder) {
+        return super.onFailedToRecycleView(holder);
     }
 
     private String formatDirector(List<Director> directors)
