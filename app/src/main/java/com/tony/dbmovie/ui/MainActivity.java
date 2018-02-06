@@ -6,26 +6,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.tony.dbmovie.R;
-import com.tony.dbmovie.api.MoviesListApi;
 import com.tony.dbmovie.commom.LoadMoreDelegate;
 import com.tony.dbmovie.contract.MoviesContract;
 import com.tony.dbmovie.data.LoadMore;
 import com.tony.dbmovie.data.Movie;
-import com.tony.dbmovie.data.MovieResult;
-import com.tony.dbmovie.network.NetworkHelper;
 import com.tony.dbmovie.presenter.MoviesPresenter;
 import com.tony.dbmovie.ui.binder.LoadMoreBinder;
 import com.tony.dbmovie.ui.binder.MoviesListBinder;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
@@ -50,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
         presenter = new MoviesPresenter(this);
         presenter.getMovies(true);
 
-        LoadMoreDelegate loadMoreDelegate = new LoadMoreDelegate(this);
+        LoadMoreDelegate loadMoreDelegate = new LoadMoreDelegate(this,mMoviesItems,adapter);
         loadMoreDelegate.attachRecycleView(listView);
 
     }
@@ -59,9 +49,6 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
     public void onLoadMore() {
         presenter.getMovies(false);
         loadingMore = true;
-        mMoviesItems.add(new LoadMore());
-        adapter.setItems(mMoviesItems);
-        adapter.notifyItemRangeInserted(mMoviesItems.size() -1,1);
     }
 
     @Override
