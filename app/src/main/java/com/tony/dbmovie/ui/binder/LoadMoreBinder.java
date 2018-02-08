@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tony.dbmovie.R;
-import com.tony.dbmovie.data.LoadMore;
+import com.tony.dbmovie.data.EmptyClass;
 
 import me.drakeet.multitype.ItemViewBinder;
 
@@ -15,7 +15,7 @@ import me.drakeet.multitype.ItemViewBinder;
  * Created by bushi on 2018/2/5.
  */
 
-public class LoadMoreBinder extends ItemViewBinder<LoadMore,LoadMoreBinder.MoreViewHolder>{
+public class LoadMoreBinder extends ItemViewBinder<EmptyClass,LoadMoreBinder.MoreViewHolder>{
     static class MoreViewHolder extends RecyclerView.ViewHolder
     {
         public MoreViewHolder(View itemView) {
@@ -31,7 +31,7 @@ public class LoadMoreBinder extends ItemViewBinder<LoadMore,LoadMoreBinder.MoreV
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull MoreViewHolder holder, @NonNull LoadMore item) {
+    protected void onBindViewHolder(@NonNull MoreViewHolder holder, @NonNull EmptyClass item) {
 
     }
 }

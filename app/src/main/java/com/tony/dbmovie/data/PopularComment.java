@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 public class PopularComment {
     @SerializedName("rating")
     @Expose
-    private Rating rating;
+    private CommentRating rating;
     @SerializedName("useful_count")
     @Expose
     private Integer usefulCount;
@@ -30,11 +30,11 @@ public class PopularComment {
     @Expose
     private String id;
 
-    public Rating getRating() {
+    public CommentRating getRating() {
         return rating;
     }
 
-    public void setRating(Rating rating) {
+    public void setRating(CommentRating rating) {
         this.rating = rating;
     }
 

@@ -1,22 +1,14 @@
 package com.tony.dbmovie.ui;
 
-import android.app.ActivityOptions;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Transition;
-import android.view.View;
-import android.view.Window;
 
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.commom.LoadMoreDelegate;
 import com.tony.dbmovie.contract.MoviesContract;
-import com.tony.dbmovie.data.LoadMore;
+import com.tony.dbmovie.data.EmptyClass;
 import com.tony.dbmovie.data.Movie;
 import com.tony.dbmovie.presenter.MoviesPresenter;
 import com.tony.dbmovie.ui.binder.LoadMoreBinder;
@@ -42,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
 
         adapter = new MultiTypeAdapter();
         adapter.register(Movie.class,new MoviesListBinder(MainActivity.this));
-        adapter.register(LoadMore.class,new LoadMoreBinder());
+        adapter.register(EmptyClass.class,new LoadMoreBinder());
         listView.setAdapter(adapter);
 
         presenter = new MoviesPresenter(this);

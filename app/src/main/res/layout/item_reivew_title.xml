@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:text="影评"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="写影评"
+            android:gravity="right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

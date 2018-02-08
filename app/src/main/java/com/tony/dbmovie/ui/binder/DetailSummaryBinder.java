@@ -16,7 +16,7 @@ import me.drakeet.multitype.ItemViewBinder;
  * Created by dev on 2/7/18.
  */
 
-public class DetailSummary extends ItemViewBinder<MovieDetail, DetailSummary.DetailSummaryHolder> {
+public class DetailSummaryBinder extends ItemViewBinder<MovieDetail, DetailSummaryBinder.DetailSummaryHolder> {
 
     static class DetailSummaryHolder extends RecyclerView.ViewHolder
     {

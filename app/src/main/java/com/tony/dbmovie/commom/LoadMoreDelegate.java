@@ -3,7 +3,7 @@ package com.tony.dbmovie.commom;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.tony.dbmovie.data.LoadMore;
+import com.tony.dbmovie.data.EmptyClass;
 
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
@@ -62,7 +62,7 @@ public class LoadMoreDelegate {
             final int lastVisiblePosition = layoutManager.findLastCompletelyVisibleItemPosition();
             final boolean isBottom = (lastVisiblePosition >= itemCount - VISIBLE_THRESHOLD);
             if (isBottom) {
-                items.add(new LoadMore());
+                items.add(new EmptyClass());
                 adapter.setItems(items);
                 recyclerView.post(new Runnable() {
                     @Override
