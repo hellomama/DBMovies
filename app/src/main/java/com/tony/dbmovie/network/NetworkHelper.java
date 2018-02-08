@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkHelper {
 
-    private static final String BASE_URL = "https://api.douban.com/v2/movie/";
+    private static final String BASE_URL = "https://api.douban.com/";
 
     private static final Object object = new Object();
     private static NetworkHelper ourInstance ;

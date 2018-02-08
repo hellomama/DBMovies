@@ -2,11 +2,13 @@ package com.tony.dbmovie.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by dev on 2/1/18.
  */
 
-public class Avatars {
+public class Avatars implements Serializable {
 
     @SerializedName("small")
     @Expose

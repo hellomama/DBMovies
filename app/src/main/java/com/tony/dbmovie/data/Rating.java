@@ -2,11 +2,13 @@ package com.tony.dbmovie.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by dev on 2/1/18.
  */
 
-public class Rating {
+public class Rating implements Serializable {
     @SerializedName("max")
     @Expose
     private Integer max;

@@ -2,13 +2,14 @@ package com.tony.dbmovie.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by dev on 2/1/18.
  */
 
-public class Movie {
+public class Movie implements Serializable{
     @SerializedName("rating")
     @Expose
     private Rating rating;
@@ -57,6 +58,16 @@ public class Movie {
     @SerializedName("id")
     @Expose
     private String id;
+
+    private int backgroundColor = 0xFFFFFF;
+
+    public int getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(int backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
 
     public Rating getRating() {
         return rating;

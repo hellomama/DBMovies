@@ -1,70 +1,57 @@
 package com.tony.dbmovie.model;
 
-import com.tony.dbmovie.api.MoviesListApi;
-import com.tony.dbmovie.contract.MoviesContract;
-import com.tony.dbmovie.data.Movie;
-import com.tony.dbmovie.data.MovieResult;
+import com.tony.dbmovie.api.MovieDescriptionApi;
+import com.tony.dbmovie.contract.MoviesDetailContract;
+import com.tony.dbmovie.data.MovieDetail;
 import com.tony.dbmovie.network.NetworkHelper;
+import com.tony.dbmovie.presenter.OnMovieDetailListener;
 import com.tony.dbmovie.presenter.OnMoviesListener;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by dev on 2/5/18.
+ * Created by dev on 2/6/18.
  */
 
-public class MoviesModel implements MoviesContract.Model {
+public class MoviesDetailModel implements MoviesDetailContract.Model {
+    private MovieDescriptionApi api;
+    private OnMovieDetailListener listener;
 
-    private OnMoviesListener listener;
-    private MoviesListApi api;
-    private int offset = 0;
-
-    public MoviesModel() {
-        if (api == null) {
-            api = NetworkHelper.getInstance().createApi(MoviesListApi.class);
+    public MoviesDetailModel() {
+        if (api == null)
+        {
+            api = NetworkHelper.getInstance().createApi(MovieDescriptionApi.class);
         }
     }
 
-    public void setListener(OnMoviesListener listener) {
+    public void setListener(OnMovieDetailListener listener) {
         this.listener = listener;
     }
 
-    @Override
-    public void loadMovies(boolean clear) {
 
-        if (clear)
-        {
-            offset = 0;
-        }
-        api.getMovieList("guangzhou",offset,20)
+    @Override
+    public void loadMovieDetail(String movieId) {
+
+        api.getMovie(movieId,"guangzhou")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new Function<MovieResult, List<Movie>>() {
-                    @Override
-                    public List<Movie> apply(MovieResult movieResult) throws Exception {
-                        return movieResult.getSubjects();
-                    }
-                })
-                .subscribe(new Subscriber<List<Movie>>() {
+                .subscribe(new Subscriber<MovieDetail>() {
                     @Override
                     public void onSubscribe(Subscription s) {
                         s.request(Long.MAX_VALUE);
                     }
 
                     @Override
-                    public void onNext(List<Movie> movies) {
+                    public void onNext(MovieDetail movieDetail) {
                         if (listener != null)
                         {
-                            listener.onSuccess(movies);
+                            listener.onSuccess(movieDetail);
                         }
-                        offset += movies.size();
                     }
 
                     @Override

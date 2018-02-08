@@ -14,6 +14,7 @@
         android:id="@+id/img_poster"
         android:src="@mipmap/ic_launcher"
         android:scaleType="centerCrop"
+        android:transitionName="poster"
         android:layout_width="80dp"
         android:layout_height="100dp" />
     <android.support.constraint.ConstraintLayout
@@ -64,11 +65,12 @@
             android:layout_height="wrap_content" />
         <TextView
             app:layout_constraintBottom_toBottomOf="@+id/layout_detail"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
             android:id="@+id/text_cast"
             android:text="主演： 刘德华 周星驰"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content" />
 
     </android.support.constraint.ConstraintLayout>

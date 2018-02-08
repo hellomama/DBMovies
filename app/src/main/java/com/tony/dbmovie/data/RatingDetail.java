@@ -2,11 +2,13 @@ package com.tony.dbmovie.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by dev on 2/1/18.
  */
 
-public class RatingDetail {
+public class RatingDetail implements Serializable {
     @SerializedName("1")
     @Expose
     private Double _1;
@@ -61,5 +63,10 @@ public class RatingDetail {
 
     public void set4(Double _4) {
         this._4 = _4;
+    }
+
+    public Double getTotal()
+    {
+        return get1()+get2()+get3()+get4()+get5();
     }
 }
