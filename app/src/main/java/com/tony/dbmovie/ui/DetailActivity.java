@@ -17,11 +17,11 @@ import com.tony.dbmovie.data.MovieDetail;
 import com.tony.dbmovie.data.PopularComment;
 import com.tony.dbmovie.presenter.MoviesDetailPresenter;
 import com.tony.dbmovie.ui.binder.DetailCastBinder;
-import com.tony.dbmovie.ui.binder.DetailCastHeader;
 import com.tony.dbmovie.ui.binder.DetailHeaderBinder;
-import com.tony.dbmovie.ui.binder.DetailReviewHeader;
+import com.tony.dbmovie.ui.binder.DetailHeader;
 import com.tony.dbmovie.ui.binder.DetailReviewsBinder;
 import com.tony.dbmovie.ui.binder.DetailSummaryBinder;
+import com.tony.dbmovie.ui.binder.DetailTrailerBinder;
 
 import me.drakeet.multitype.ClassLinker;
 import me.drakeet.multitype.ItemViewBinder;
@@ -63,7 +63,7 @@ public class DetailActivity extends AppCompatActivity implements MoviesDetailCon
         adapter = new MultiTypeAdapter();
         adapter.register(Movie.class, new DetailHeaderBinder());
         adapter.register(MovieDetail.class).
-                to(new DetailSummaryBinder(),new DetailCastBinder())
+                to(new DetailSummaryBinder(),new DetailCastBinder(),new DetailTrailerBinder())
                 .withClassLinker(new ClassLinker<MovieDetail>() {
                     @NonNull
                     @Override
@@ -71,25 +71,14 @@ public class DetailActivity extends AppCompatActivity implements MoviesDetailCon
                         if (position == 1)
                         {
                             return DetailSummaryBinder.class;
-                        }else {
+                        }else if (position == 3){
                             return DetailCastBinder.class;
-                        }
-                    }
-                });
-        adapter.register(EmptyClass.class).
-                to(new DetailCastHeader(),new DetailReviewHeader())
-                .withClassLinker(new ClassLinker<EmptyClass>() {
-                    @NonNull
-                    @Override
-                    public Class<? extends ItemViewBinder<EmptyClass, ?>> index(int position, @NonNull EmptyClass emptyClass) {
-                        if (position == 2)
-                        {
-                            return DetailCastHeader.class;
                         }else {
-                            return DetailReviewHeader.class;
+                            return DetailTrailerBinder.class;
                         }
                     }
                 });
+        adapter.register(EmptyClass.class,new DetailHeader());
         adapter.register(PopularComment.class, new DetailReviewsBinder());
         recyclerView.setAdapter(adapter);
         parseExtra();
@@ -114,9 +103,11 @@ public class DetailActivity extends AppCompatActivity implements MoviesDetailCon
     @Override
     public void updateMovieDetail(MovieDetail detail) {
         items.add(detail);
-        items.add(new EmptyClass());
+        items.add(new EmptyClass("演职人员",true));
         items.add(detail);
-        items.add(new EmptyClass());
+        items.add(new EmptyClass("预告片与剧照",true));
+        items.add(detail);
+        items.add(new EmptyClass("影评","写影评"));
         items.addAll(detail.getPopularComments());
         adapter.notifyDataSetChanged();
     }

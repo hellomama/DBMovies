@@ -1,4 +1,4 @@
-package com.tony.dbmovie.ui;
+package com.tony.dbmovie.ui.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.Cast;
+import com.tony.dbmovie.data.Director;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,10 +22,10 @@ import java.util.List;
 
 public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastViewHolder> {
 
-    private List<Cast> casts = Collections.emptyList();
+    private List<Object> casts = Collections.emptyList();
 
 
-    public void setCasts(@Nullable List<Cast> castList)
+    public void setCasts(@Nullable List<Object> castList)
     {
         casts = castList;
     }
@@ -37,9 +38,19 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastViewHolder
 
     @Override
     public void onBindViewHolder(CastViewHolder holder, int position) {
-        Cast cast = casts.get(position);
-        Glide.with(holder.avatar.getContext()).load(cast.getAvatars().getMedium()).into(holder.avatar);
-        holder.textView.setText(cast.getName());
+        Object o = casts.get(position);
+        if (o instanceof Cast)
+        {
+            Cast cast = (Cast)o;
+            Glide.with(holder.avatar.getContext()).load(cast.getAvatars().getMedium()).into(holder.avatar);
+            holder.textView.setText(cast.getName());
+        }else if (o instanceof Director)
+        {
+            Director director = (Director)o;
+            Glide.with(holder.avatar.getContext()).load(director.getAvatars().getMedium()).into(holder.avatar);
+            holder.textView.setText("导演："+director.getName());
+        }
+
     }
 
     @Override

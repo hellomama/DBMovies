@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:id="@+id/layout_title"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:id="@+id/layout_title"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
+    android:layout_height="40dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
         <TextView
+            android:id="@+id/text_left"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:layout_weight="1"
@@ -19,6 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/text_right"
             android:textSize="15sp"
             android:textColor="@color/black"
             android:layout_weight="1"
@@ -26,5 +25,4 @@
             android:gravity="right"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
