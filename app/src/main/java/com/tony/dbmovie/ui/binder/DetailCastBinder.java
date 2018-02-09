@@ -2,6 +2,7 @@ package com.tony.dbmovie.ui.binder;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.MovieDetail;
 import com.tony.dbmovie.ui.adapter.CastAdapter;
+import com.tony.dbmovie.widget.CommonDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +31,7 @@ public class DetailCastBinder extends ItemViewBinder<MovieDetail,DetailCastBinde
         public CastViewHolder(View itemView) {
             super(itemView);
             recyclerView = itemView.findViewById(R.id.list_cast);
-            DividerItemDecoration decor = new DividerItemDecoration(itemView.getContext(), DividerItemDecoration.HORIZONTAL);
-            recyclerView.addItemDecoration(decor);
+            recyclerView.addItemDecoration(new CommonDecoration(itemView.getContext(),R.drawable.vertical_decoration, LinearLayoutManager.VERTICAL));
             adapter = new CastAdapter();
             recyclerView.setAdapter(adapter);
         }
