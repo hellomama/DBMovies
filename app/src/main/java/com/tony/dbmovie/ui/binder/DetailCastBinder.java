@@ -31,7 +31,7 @@ public class DetailCastBinder extends ItemViewBinder<MovieDetail,DetailCastBinde
         public CastViewHolder(View itemView) {
             super(itemView);
             recyclerView = itemView.findViewById(R.id.list_cast);
-            recyclerView.addItemDecoration(new CommonDecoration(itemView.getContext(),R.drawable.vertical_decoration, LinearLayoutManager.VERTICAL));
+            recyclerView.addItemDecoration(new CommonDecoration(itemView.getContext(),R.drawable.vertical_decoration, LinearLayoutManager.HORIZONTAL));
             adapter = new CastAdapter();
             recyclerView.setAdapter(adapter);
         }

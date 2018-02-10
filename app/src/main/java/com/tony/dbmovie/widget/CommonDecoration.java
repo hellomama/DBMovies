@@ -38,9 +38,23 @@ public class CommonDecoration extends RecyclerView.ItemDecoration {
         mOrientation = orientation;
     }
 
+//    @Override
+//    public void onDraw(Canvas c, RecyclerView parent) {
+//        super.onDraw(c, parent);
+//
+//        if (mOrientation == VERTICAL_LIST)
+//        {
+//            drawVertical(c, parent);
+//        }
+//        else
+//        {
+//            drawHorizontal(c, parent);
+//        }
+//    }
+
     @Override
-    public void onDraw(Canvas c, RecyclerView parent) {
-        super.onDraw(c, parent);
+    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+        super.onDraw(c, parent, state);
 
         if (mOrientation == VERTICAL_LIST)
         {
