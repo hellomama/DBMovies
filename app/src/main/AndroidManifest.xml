@@ -19,6 +19,7 @@
         </activity>
 
         <activity android:name=".ui.DetailActivity"/>
+        <activity android:name=".ui.TrailerActivity" />
     </application>
 
 </manifest>

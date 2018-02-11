@@ -14,6 +14,7 @@ import com.tony.dbmovie.data.Cast;
 import com.tony.dbmovie.data.Director;
 import com.tony.dbmovie.data.Photo;
 import com.tony.dbmovie.data.Trailer;
+import com.tony.dbmovie.ui.TrailerActivity;
 
 import java.util.Collections;
 import java.util.List;
@@ -38,13 +39,19 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.TrailerV
     }
 
     @Override
-    public void onBindViewHolder(TrailerViewHolder holder, int position) {
+    public void onBindViewHolder(final TrailerViewHolder holder, int position) {
         Object o = casts.get(position);
         if (o instanceof Trailer)
         {
-            Trailer trailer = (Trailer)o;
+            final Trailer trailer = (Trailer)o;
             Glide.with(holder.background.getContext()).load(trailer.getMedium()).into(holder.background);
             holder.play.setVisibility(View.VISIBLE);
+            holder.play.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TrailerActivity.startActivity(holder.play.getContext(),trailer);
+                }
+            });
         }else if (o instanceof Photo)
         {
             Photo photo = (Photo)o;

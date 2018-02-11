@@ -3,11 +3,13 @@ package com.tony.dbmovie.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by dev on 2/7/18.
  */
 
-public class Trailer {
+public class Trailer implements Serializable{
     @SerializedName("medium")
     @Expose
     private String medium;

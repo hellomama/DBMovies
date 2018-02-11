@@ -1,6 +1,7 @@
 package com.tony.dbmovie.widget;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ public class ExpandTextView extends LinearLayout {
     private TextView content;
     private TextView showMore;
     private boolean showComplete = false;
+    private int originalLine = 0;
 
 
     public ExpandTextView(Context context) {
@@ -39,6 +41,11 @@ public class ExpandTextView extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
     }
 
     private void initLayout()
@@ -71,13 +78,7 @@ public class ExpandTextView extends LinearLayout {
     public void initContent(String aContent)
     {
         content.setText(aContent);
-        if (content.getLineCount()>=4)
-        {
-           showMore.setVisibility(GONE);
-        }else {
-            showMore.setVisibility(VISIBLE);
-            updateText();
-        }
+        updateText();
     }
 
     private void updateText()
