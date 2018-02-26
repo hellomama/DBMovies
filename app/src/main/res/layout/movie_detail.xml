@@ -18,7 +18,7 @@
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher"
             android:layout_width="100dp"
-            android:layout_height="120dp" />
+            android:layout_height="140dp" />
         <android.support.constraint.ConstraintLayout
             android:id="@+id/layout_name"
             android:layout_marginLeft="10dp"
@@ -97,8 +97,15 @@
         <LinearLayout
             android:layout_weight="2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
+            <com.tony.dbmovie.widget.RateLayout
+                android:id="@+id/rate_layout"
+                android:paddingBottom="10dp"
+                app:lightStar="@mipmap/fade_star"
+                app:fadeStar="@mipmap/light_star"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
     </LinearLayout>
 

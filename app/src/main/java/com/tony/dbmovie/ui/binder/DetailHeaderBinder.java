@@ -12,7 +12,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.Movie;
+import com.tony.dbmovie.widget.RateLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import me.drakeet.multitype.ItemViewBinder;
@@ -28,6 +30,7 @@ public class DetailHeaderBinder extends ItemViewBinder<Movie,DetailHeaderBinder.
         ImageView poster;
         TextView text_name_cn,text_name_original,text_type,text_duration,text_date,text_total_comment,text_average;
         LinearLayout layout;
+        RateLayout rateLayout;
         public DetailHeaderHolder(View view) {
             super(view);
             layout= view.findViewById(R.id.layout_detail_header);
@@ -39,6 +42,7 @@ public class DetailHeaderBinder extends ItemViewBinder<Movie,DetailHeaderBinder.
             text_date = view.findViewById(R.id.text_date);
             text_total_comment = view.findViewById(R.id.text_total_comment);
             text_average = view.findViewById(R.id.text_average);
+            rateLayout = view.findViewById(R.id.rate_layout);
         }
     }
 
@@ -65,6 +69,7 @@ public class DetailHeaderBinder extends ItemViewBinder<Movie,DetailHeaderBinder.
         holder.text_type.setText(getGenresFormat(item.getGenres()));
         holder.text_duration.setText(item.getDurations() == null ? " ":item.getDurations().get(0));
         Glide.with(holder.poster.getContext()).load(item.getImages().getMedium()).into(holder.poster);
+        holder.rateLayout.setData(getRateList(item));
     }
 
     private String getGenresFormat(List<String> Genres)
@@ -76,5 +81,16 @@ public class DetailHeaderBinder extends ItemViewBinder<Movie,DetailHeaderBinder.
            builder.append(" ");
        }
        return builder.toString();
+    }
+
+    private List<Double> getRateList(Movie item)
+    {
+        List<Double> result = new ArrayList<>();
+        result.add(item.getRating().getDetails().get1());
+        result.add(item.getRating().getDetails().get2());
+        result.add(item.getRating().getDetails().get3());
+        result.add(item.getRating().getDetails().get4());
+        result.add(item.getRating().getDetails().get5());
+        return result;
     }
 }
