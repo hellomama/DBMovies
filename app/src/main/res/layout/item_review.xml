@@ -42,6 +42,7 @@
                 android:layout_height="0dp" />
         </LinearLayout>
         <ImageView
+            android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_alignParentEnd="true"
             android:src="@mipmap/ic_launcher"
@@ -74,23 +75,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:gravity="center_vertical"
                 android:id="@+id/text_date"
                 android:text="01-19 18:43"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
+                android:layout_height="40dp" />
+            <com.tony.dbmovie.widget.DrawableCenterTextView
+                android:drawableLeft="@drawable/selector_like"
+                android:drawablePadding="1dp"
+                android:gravity="start|center_vertical"
                 android:layout_toLeftOf="@+id/text_comment"
-                android:text="10"
+                android:text="1220"
                 android:layout_marginRight="10dp"
                 android:id="@+id/text_like"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
+                android:layout_width="80dp"
+                android:layout_height="40dp" />
+            <com.tony.dbmovie.widget.DrawableCenterTextView
+                android:drawableLeft="@mipmap/comment"
+                android:drawablePadding="1dp"
+                android:gravity="start|center_vertical"
                 android:layout_alignParentEnd="true"
-                android:text="评论"
+                android:text="1220"
                 android:id="@+id/text_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="80dp"
+                android:layout_height="40dp" />
         </RelativeLayout>
 
     </LinearLayout>
