@@ -1,17 +1,15 @@
 package com.tony.dbmovie.ui;
 
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.tony.dbmovie.R;
-import com.tony.dbmovie.data.Movie;
 import com.tony.dbmovie.data.Trailer;
 import com.tony.dbmovie.widget.IjkPlayerView;
 import com.tony.dbmovie.widget.VideoPlayListener;
@@ -30,6 +28,7 @@ public class TrailerActivity extends AppCompatActivity {
     private IjkPlayerView playerView;
     private ImageView play;
     private Trailer trailer;
+    private boolean isPlaying = false;
 
     public static void startActivity(Context context, Trailer trailer)
     {
@@ -64,7 +63,7 @@ public class TrailerActivity extends AppCompatActivity {
         playerView.setListener(new VideoPlayListener() {
             @Override
             public void onBufferingUpdate(IMediaPlayer iMediaPlayer, int i) {
-
+                Log.d("onBufferingUpdate","update" + i);
             }
 
             @Override
@@ -74,17 +73,20 @@ public class TrailerActivity extends AppCompatActivity {
 
             @Override
             public boolean onError(IMediaPlayer iMediaPlayer, int i, int i1) {
+                Log.d("onError","update" + i);
                 return false;
             }
 
             @Override
             public boolean onInfo(IMediaPlayer iMediaPlayer, int i, int i1) {
+                Log.d("onInfo","update i - " + i+" i1 - "+i1);
                 return false;
             }
 
             @Override
             public void onPrepared(IMediaPlayer iMediaPlayer) {
-                iMediaPlayer.start();
+                playerView.updateUI();
+                startPlay();
             }
 
             @Override
@@ -98,19 +100,37 @@ public class TrailerActivity extends AppCompatActivity {
             }
         });
         playerView.setVideoPath(trailer.getResourceUrl());
+//        playerView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isPlaying) {
+//                    stopPlay();
+//                }else {
+//                    startPlay();
+//                }
+//            }
+//        });
+    }
 
+    private void startPlay()
+    {
+        isPlaying = true;
+        playerView.start();
+        play.setVisibility(View.GONE);
+    }
 
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+    private void stopPlay()
+    {
+        isPlaying = false;
+        playerView.pause();
+        play.setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         IjkMediaPlayer.native_profileEnd();
+        isPlaying = false;
     }
 
 

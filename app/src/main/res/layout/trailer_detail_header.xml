@@ -7,7 +7,7 @@
     <com.tony.dbmovie.widget.IjkPlayerView
         android:id="@+id/player"
         android:layout_width="match_parent"
-        android:layout_height="150dp"/>
+        android:layout_height="200dp"/>
     <ImageView
         android:id="@+id/img_play"
         android:layout_gravity="center"
