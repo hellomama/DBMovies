@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.commom.LoadMoreDelegate;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Popular Movies");
         RecyclerView listView = findViewById(R.id.list_movies);
         listView.setLayoutManager(new LinearLayoutManager(this));
 

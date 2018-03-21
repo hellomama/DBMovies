@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.contract.MoviesDetailContract;
@@ -32,7 +33,7 @@ import me.drakeet.multitype.MultiTypeAdapter;
  * Created by dev on 2/6/18.
  */
 
-public class DetailActivity extends AppCompatActivity implements MoviesDetailContract.View{
+public class DetailActivity extends BaseActivity implements MoviesDetailContract.View{
 
     private final static String EXTRA_DATA = "data";
     private Movie movie;
@@ -58,6 +59,9 @@ public class DetailActivity extends AppCompatActivity implements MoviesDetailCon
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        initToolbarNav(toolbar);
 
         RecyclerView recyclerView = findViewById(R.id.list_movies_detail);
         adapter = new MultiTypeAdapter();
@@ -87,6 +91,7 @@ public class DetailActivity extends AppCompatActivity implements MoviesDetailCon
         {
             MoviesDetailPresenter presenter = new MoviesDetailPresenter(this);
             presenter.getMovieDetail(movie.getId());
+            toolbar.setTitle(movie.getTitle());
 
         }
 
