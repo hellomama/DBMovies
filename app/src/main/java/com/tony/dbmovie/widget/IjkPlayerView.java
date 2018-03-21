@@ -1,6 +1,7 @@
 package com.tony.dbmovie.widget;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -38,12 +39,16 @@ public class IjkPlayerView extends FrameLayout {
     private VideoPlayListener listener;
     private View timeLine;
     private boolean showing = true;
-    private TextView endTime;
+    private TextView endTime,currentTime;
+    private SeekBar seekBar;
+    private Handler handler = new Handler();
 
     private Runnable progressRunnable = new Runnable() {
         @Override
         public void run() {
-
+            seekBar.setProgress((int)mediaPlayer.getCurrentPosition());
+            currentTime.setText(getVideoTime(mediaPlayer.getCurrentPosition()));
+            handler.postDelayed(this,1000);
         }
     };
 
@@ -114,11 +119,14 @@ public class IjkPlayerView extends FrameLayout {
         addView(surfaceView);
 
         timeLine = LayoutInflater.from(context).inflate(R.layout.view_time_line,this,false);
-        SeekBar seekBar = timeLine.findViewById(R.id.seekBar);
+        seekBar = timeLine.findViewById(R.id.seekBar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+                if (fromUser)
+                {
+                    seekTo(progress);
+                }
             }
 
             @Override
@@ -132,6 +140,7 @@ public class IjkPlayerView extends FrameLayout {
             }
         });
         endTime = timeLine.findViewById(R.id.end_time);
+        currentTime = timeLine.findViewById(R.id.current_time);
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,6 +162,7 @@ public class IjkPlayerView extends FrameLayout {
     public void updateUI()
     {
         endTime.setText(getVideoTime(getDuration()));
+        seekBar.setMax((int)getDuration());
     }
 
     private void createPlayer()
@@ -200,6 +210,7 @@ public class IjkPlayerView extends FrameLayout {
         if (mediaPlayer != null)
         {
             mediaPlayer.start();
+            handler.post(progressRunnable);
         }
     }
 
@@ -235,8 +246,8 @@ public class IjkPlayerView extends FrameLayout {
         int sec = 0,min = 0;
         if (time >= 0)
         {
-            min = (int)time/(60*1000);
-            sec = (int)(time - min * 60 *1000)/1000;
+            min = (int)Math.ceil(time/(60*1000));
+            sec = (int)Math.ceil(time - min * 60 *1000)/1000;
         }
         return String.format(Locale.getDefault(),FORMAT_TIME,min,sec);
     }
