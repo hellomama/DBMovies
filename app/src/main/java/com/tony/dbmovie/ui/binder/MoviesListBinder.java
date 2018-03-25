@@ -65,7 +65,8 @@ public class MoviesListBinder extends ItemViewBinder<Movie, MoviesListBinder.Mov
 
         public void setup(@NonNull Movie item, @NonNull Bitmap bitmap)
         {
-            Palette palette = Palette.generate(bitmap);
+            Palette.Builder builder = new Palette.Builder(bitmap);
+            Palette palette = builder.generate();
             if (palette.getLightMutedSwatch() != null) {
                 item.setBackgroundColor(palette.getLightMutedSwatch().getRgb());
             }else if (palette.getLightVibrantSwatch() != null){
