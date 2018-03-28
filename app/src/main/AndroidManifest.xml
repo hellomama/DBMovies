@@ -20,6 +20,7 @@
 
         <activity android:name=".ui.DetailActivity"/>
         <activity android:name=".ui.TrailerActivity" />
+        <activity android:name=".ui.ReviewsActivity"/>
     </application>
 
 </manifest>

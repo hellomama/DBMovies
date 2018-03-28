@@ -1,5 +1,6 @@
 package com.tony.dbmovie.ui.binder;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.Movie;
+import com.tony.dbmovie.ui.ReviewsActivity;
 import com.tony.dbmovie.widget.RateLayout;
 
 import java.util.ArrayList;
@@ -43,6 +45,13 @@ public class DetailHeaderBinder extends ItemViewBinder<Movie,DetailHeaderBinder.
             text_total_comment = view.findViewById(R.id.text_total_comment);
             text_average = view.findViewById(R.id.text_average);
             rateLayout = view.findViewById(R.id.rate_layout);
+
+            text_average.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.getContext().startActivity(new Intent(v.getContext(), ReviewsActivity.class));
+                }
+            });
         }
     }
 
