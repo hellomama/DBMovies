@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.tony.dbmovie.R;
-import com.tony.dbmovie.commom.LoadMoreDelegate;
+import com.tony.dbmovie.widget.LoadMoreDelegate;
 import com.tony.dbmovie.contract.MoviesContract;
 import com.tony.dbmovie.data.EmptyClass;
 import com.tony.dbmovie.data.Movie;

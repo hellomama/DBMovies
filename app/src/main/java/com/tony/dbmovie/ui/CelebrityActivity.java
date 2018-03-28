@@ -11,15 +11,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.tony.dbmovie.R;
-import com.tony.dbmovie.commom.Commom;
+import com.tony.dbmovie.common.Common;
 import com.tony.dbmovie.contract.CelebrityContract;
 import com.tony.dbmovie.data.Cast;
 import com.tony.dbmovie.data.Celebrity;
 import com.tony.dbmovie.data.Director;
-import com.tony.dbmovie.data.Movie;
 import com.tony.dbmovie.presenter.CelebrityPresenter;
 import com.tony.dbmovie.ui.binder.CelebrityInfoBinder;
-import com.tony.dbmovie.ui.binder.DetailHeaderBinder;
 
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
@@ -40,7 +38,7 @@ public class CelebrityActivity extends BaseActivity implements CelebrityContract
 
     public static void start(Context context, Cast cast, ActivityOptions options) {
         Intent starter = new Intent(context, CelebrityActivity.class);
-        starter.putExtra(Commom.EXTRA_DATA,cast);
+        starter.putExtra(Common.EXTRA_DATA,cast);
         if (options != null)
         {
             context.startActivity(starter,options.toBundle());
@@ -51,7 +49,7 @@ public class CelebrityActivity extends BaseActivity implements CelebrityContract
 
     public static void start(Context context, Director director, ActivityOptions options) {
         Intent starter = new Intent(context, CelebrityActivity.class);
-        starter.putExtra(Commom.EXTRA_DATA,director);
+        starter.putExtra(Common.EXTRA_DATA,director);
         context.startActivity(starter,options.toBundle());
     }
 
@@ -60,7 +58,7 @@ public class CelebrityActivity extends BaseActivity implements CelebrityContract
         Intent intent = getIntent();
         if (intent != null)
         {
-            Object o = intent.getSerializableExtra(Commom.EXTRA_DATA);
+            Object o = intent.getSerializableExtra(Common.EXTRA_DATA);
             if (o instanceof Cast)
             {
                 cast = (Cast)o;

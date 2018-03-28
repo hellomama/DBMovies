@@ -4,10 +4,9 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
+import android.graphics.PathMeasure;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -22,12 +21,13 @@ import static android.graphics.Paint.Style.STROKE;
 
 public class LoadingView extends View implements View.OnClickListener{
 
-    private Paint paint;
+    private Paint paint,clearPaint;
     private float center_x,center_y,radius,start_x,start_y;
-    private  Path path;
-    private int angle =0;
+    private  Path path,tickPath;
+    private int angle =0;float tickProgress = 0;
     private ValueAnimator animator;
-    private boolean finish = false;
+    private boolean finish = false, refresh = false;
+    private PathMeasure measure;
 
     public LoadingView(Context context) {
         super(context);
@@ -45,27 +45,37 @@ public class LoadingView extends View implements View.OnClickListener{
 
     private void init()
     {
+        measure = new PathMeasure();
         paint = new Paint();
         paint.setStrokeWidth(10);
         paint.setAntiAlias(true);
         paint.setStyle(STROKE);
         paint.setColor(getResources().getColor(R.color.colorAccent));
         path = new Path();
+        tickPath = new Path();
+
         setOnClickListener(this);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        path.addArc(center_x - radius,center_y - radius,center_x +radius,center_y + radius, 0,angle);
+        path.reset();
+        path.addArc(center_x - radius,center_y - radius,center_x +radius,center_y + radius, 180,angle);
         canvas.drawPath(path,paint);
         if (finish) {
-            path.moveTo(center_x - radius / 2, center_y);
-            path.moveTo(center_x, center_y + radius / 2);
-            path.moveTo(center_x, center_y + radius / 2);
-            canvas.drawLine(center_x - radius / 2, center_y, center_x, center_y + radius / 2, paint);
-            path.lineTo(center_x + radius / 2, center_y - radius / 2);
+            path.reset();
+            tickPath.moveTo(center_x - radius / 2, center_y);
+            tickPath.lineTo(center_x, center_y + radius / 2);
+            tickPath.lineTo(center_x + radius / 2, center_y - radius / 2);
+            measure.setPath(tickPath,false);
+            measure.getSegment(0,tickProgress/100 * measure.getLength(),path,true);
+            path.rLineTo(0,0);
             canvas.drawPath(path,paint);
-
+            if (tickProgress <= 100)
+            {
+                tickProgress++;
+                postInvalidateDelayed(20);
+            }
         }
     }
 
@@ -83,6 +93,7 @@ public class LoadingView extends View implements View.OnClickListener{
     {
         animator = new ValueAnimator();
         animator.setIntValues(0,360);
+        animator.setDuration(2000);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -128,10 +139,18 @@ public class LoadingView extends View implements View.OnClickListener{
                 animator.start();
             }
         }
+        finish = false;
+        tickProgress = 0;
     }
 
     @Override
     public void onClick(View v) {
+//        refreshTheView();
         start();
+    }
+
+    private void refreshTheView() {
+        invalidate();
+        requestLayout();
     }
 }
