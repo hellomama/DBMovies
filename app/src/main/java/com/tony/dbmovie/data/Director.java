@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by dev on 2/1/18.
  */
 
-public class Director implements Serializable {
+public class Director extends BaseData implements Serializable {
     @SerializedName("avatars")
     @Expose
     private Avatars avatars;

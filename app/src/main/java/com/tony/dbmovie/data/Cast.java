@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by dev on 2/1/18.
  */
 
-public class Cast implements Serializable {
+public class Cast extends BaseData implements Serializable {
     @SerializedName("avatars")
     @Expose
     private Avatars avatars;
@@ -64,4 +64,6 @@ public class Cast implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
+
 }
