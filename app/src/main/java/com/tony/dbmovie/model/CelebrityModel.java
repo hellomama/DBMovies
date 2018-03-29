@@ -62,7 +62,7 @@ public class CelebrityModel implements CelebrityContract.Model {
 
                     @Override
                     public void onComplete() {
-                        loadWork(id);
+                        loadPhoto(id);
                     }
                 });
     }
@@ -95,7 +95,6 @@ public class CelebrityModel implements CelebrityContract.Model {
 
                     @Override
                     public void onComplete() {
-                        loadPhoto(id);
                     }
                 });
     }
@@ -128,7 +127,7 @@ public class CelebrityModel implements CelebrityContract.Model {
 
                     @Override
                     public void onComplete() {
-
+                        loadWork(id);
                     }
                 });
     }

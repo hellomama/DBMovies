@@ -1,4 +1,4 @@
-package com.tony.dbmovie.ui;
+package com.tony.dbmovie.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +16,7 @@ public class BaseActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                finishAfterTransition();
             }
         });
     }

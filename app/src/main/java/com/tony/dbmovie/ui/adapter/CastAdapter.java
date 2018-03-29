@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,7 @@ import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.BaseData;
 import com.tony.dbmovie.data.Cast;
 import com.tony.dbmovie.data.Director;
-import com.tony.dbmovie.data.Movie;
-import com.tony.dbmovie.ui.CelebrityActivity;
+import com.tony.dbmovie.ui.activity.CelebrityActivity;
 
 import java.util.Collections;
 import java.util.List;

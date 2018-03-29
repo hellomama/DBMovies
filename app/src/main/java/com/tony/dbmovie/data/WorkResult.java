@@ -3,13 +3,14 @@ package com.tony.dbmovie.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by dev on 3/29/18.
  */
 
-public class WorkResult {
+public class WorkResult implements Serializable {
     @SerializedName("count")
     @Expose
     private Integer count;

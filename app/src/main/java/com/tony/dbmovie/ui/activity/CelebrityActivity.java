@@ -1,4 +1,4 @@
-package com.tony.dbmovie.ui;
+package com.tony.dbmovie.ui.activity;
 
 import android.app.ActivityOptions;
 import android.content.Context;

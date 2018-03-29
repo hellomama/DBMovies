@@ -60,11 +60,11 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkHolder> {
     }
 
 
-    static class WorkHolder extends RecyclerView.ViewHolder
+    public static class WorkHolder extends RecyclerView.ViewHolder
     {
         ImageView imageView;
         TextView workName,role,date;
-        private WorkHolder(View itemView) {
+        public WorkHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.img_avatar);
             workName = itemView.findViewById(R.id.text_title);

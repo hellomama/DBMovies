@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.Movie;
-import com.tony.dbmovie.ui.ReviewsActivity;
+import com.tony.dbmovie.ui.activity.ReviewsActivity;
 import com.tony.dbmovie.widget.RateLayout;
 
 import java.util.ArrayList;

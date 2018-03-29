@@ -12,6 +12,7 @@ import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.Photo;
 import com.tony.dbmovie.data.PhotoResult;
 import com.tony.dbmovie.data.WorkResult;
+import com.tony.dbmovie.ui.activity.PhotoActivity;
 import com.tony.dbmovie.ui.adapter.PhotoAdapter;
 import com.tony.dbmovie.widget.CommonDecoration;
 
@@ -36,10 +37,16 @@ public class CelebrityPhotosBinder extends ItemViewBinder<PhotoResult,CelebrityP
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull PhotoHolder holder, @NonNull PhotoResult item) {
+    protected void onBindViewHolder(@NonNull PhotoHolder holder, @NonNull final PhotoResult item) {
         holder.photoCount.setText(String.format(FORMAT,item.getCount()));
         holder.photoCount.setVisibility(item.getCount()>10?View.VISIBLE:View.GONE);
         holder.setList(item.getPhotos());
+        holder.photoCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PhotoActivity.start(v.getContext(),item,null);
+            }
+        });
     }
 
     static class PhotoHolder extends RecyclerView.ViewHolder
@@ -51,7 +58,7 @@ public class CelebrityPhotosBinder extends ItemViewBinder<PhotoResult,CelebrityP
             super(itemView);
             recyclerView = itemView.findViewById(R.id.photo_list);
             photoCount = itemView.findViewById(R.id.photo_count);
-            adapter = new PhotoAdapter(itemView.getContext());
+            adapter = new PhotoAdapter(itemView.getContext(),false);
             recyclerView.addItemDecoration(new CommonDecoration(itemView.getContext(),R.drawable.vertical_decoration, LinearLayoutManager.HORIZONTAL));
             recyclerView.setAdapter(adapter);
         }

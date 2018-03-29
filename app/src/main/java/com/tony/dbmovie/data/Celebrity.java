@@ -3,13 +3,14 @@ package com.tony.dbmovie.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by bushi on 2018/3/24.
  */
 
-public class Celebrity {
+public class Celebrity implements Serializable {
     @SerializedName("website")
     @Expose
     private String website;

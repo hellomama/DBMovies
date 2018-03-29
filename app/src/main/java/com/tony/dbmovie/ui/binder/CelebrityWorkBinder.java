@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.WorkResult;
+import com.tony.dbmovie.ui.activity.WorksActivity;
 import com.tony.dbmovie.ui.adapter.WorkAdapter;
 
 import me.drakeet.multitype.ItemViewBinder;
@@ -30,10 +31,16 @@ public class CelebrityWorkBinder extends ItemViewBinder<WorkResult,CelebrityWork
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull CelebrityWorkHolder holder, @NonNull WorkResult item) {
+    protected void onBindViewHolder(@NonNull CelebrityWorkHolder holder, @NonNull final WorkResult item) {
         holder.workCount.setVisibility(item.getCount()>5?View.VISIBLE:View.GONE);
         holder.workCount.setText(String.format(FORMAT,item.getWorks().size()));
         holder.adapter.setWorkList(item.getWorks());
+        holder.workCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WorksActivity.start(v.getContext(),item,null);
+            }
+        });
     }
 
     static class CelebrityWorkHolder extends RecyclerView.ViewHolder

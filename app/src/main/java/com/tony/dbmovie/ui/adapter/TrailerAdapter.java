@@ -6,15 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tony.dbmovie.R;
-import com.tony.dbmovie.data.Cast;
-import com.tony.dbmovie.data.Director;
 import com.tony.dbmovie.data.Photo;
 import com.tony.dbmovie.data.Trailer;
-import com.tony.dbmovie.ui.TrailerActivity;
+import com.tony.dbmovie.ui.activity.TrailerActivity;
 
 import java.util.Collections;
 import java.util.List;

@@ -14,15 +14,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.Cast;
 import com.tony.dbmovie.data.Director;
 import com.tony.dbmovie.data.Movie;
-import com.tony.dbmovie.ui.DetailActivity;
-import com.tony.dbmovie.ui.MainActivity;
+import com.tony.dbmovie.ui.activity.DetailActivity;
 
 import java.util.List;
 import java.util.Locale;
