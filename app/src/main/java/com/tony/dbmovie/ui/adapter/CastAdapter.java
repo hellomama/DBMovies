@@ -71,18 +71,6 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastViewHolder
                 }
             });
         }
-        holder.avatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (o instanceof Cast)
-                {
-                    CelebrityActivity.start(view.getContext(),(Cast)o,null);
-                }else if (o instanceof Director)
-                {
-                    CelebrityActivity.start(view.getContext(),(Director) o,null);
-                }
-            }
-        });
     }
 
     @Override
@@ -94,24 +82,38 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastViewHolder
     {
         ImageView avatar;
         TextView textView;
+        BaseData data;
         private CastViewHolder(View itemView) {
             super(itemView);
             avatar = itemView.findViewById(R.id.img_avatar);
             textView = itemView.findViewById(R.id.text_name);
+            avatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if (data instanceof Cast)
+                    {
+                        CelebrityActivity.start(view.getContext(),(Cast)data,null);
+                    }else if (data instanceof Director)
+                    {
+                        CelebrityActivity.start(view.getContext(),(Director) data,null);
+                    }
+                }
+            });
         }
-        public void setup(@NonNull BaseData item, @NonNull Bitmap bitmap)
+        private void setup(@NonNull BaseData item, @NonNull Bitmap bitmap)
         {
             Palette.Builder builder = new Palette.Builder(bitmap);
             Palette palette = builder.generate();
-            if (palette.getLightMutedSwatch() != null) {
-                item.setBackgroundColor(palette.getLightMutedSwatch().getRgb());
+            if (palette.getDarkVibrantSwatch() != null) {
+                item.setBackgroundColor(palette.getDarkVibrantSwatch().getRgb());
             }else if (palette.getLightVibrantSwatch() != null){
                 item.setBackgroundColor(palette.getLightVibrantSwatch().getRgb());
-            }else if (palette.getDarkVibrantSwatch() != null)
+            }else if (palette.getLightMutedSwatch() != null)
             {
-                item.setBackgroundColor(palette.getDarkVibrantSwatch().getRgb());
+                item.setBackgroundColor(palette.getLightMutedSwatch().getRgb());
             }
-            Log.d("background",item.getBackgroundColor()+"");
+            data = item;
         }
     }
 }

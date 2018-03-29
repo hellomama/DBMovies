@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.common.Common;
@@ -16,8 +15,13 @@ import com.tony.dbmovie.contract.CelebrityContract;
 import com.tony.dbmovie.data.Cast;
 import com.tony.dbmovie.data.Celebrity;
 import com.tony.dbmovie.data.Director;
+import com.tony.dbmovie.data.PhotoResult;
+import com.tony.dbmovie.data.WorkResult;
 import com.tony.dbmovie.presenter.CelebrityPresenter;
 import com.tony.dbmovie.ui.binder.CelebrityInfoBinder;
+import com.tony.dbmovie.ui.binder.CelebrityPhotosBinder;
+import com.tony.dbmovie.ui.binder.CelebrityWorkBinder;
+import com.tony.dbmovie.widget.CommonDecoration;
 
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
@@ -50,7 +54,12 @@ public class CelebrityActivity extends BaseActivity implements CelebrityContract
     public static void start(Context context, Director director, ActivityOptions options) {
         Intent starter = new Intent(context, CelebrityActivity.class);
         starter.putExtra(Common.EXTRA_DATA,director);
-        context.startActivity(starter,options.toBundle());
+        if (options != null)
+        {
+            context.startActivity(starter,options.toBundle());
+        }else {
+            context.startActivity(starter);
+        }
     }
 
     private void parseExtra()
@@ -78,11 +87,15 @@ public class CelebrityActivity extends BaseActivity implements CelebrityContract
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         initToolbarNav(toolbar);
-        toolbar.setTitle(cast.getName());
+        toolbar.setBackgroundColor(isDirector?director.getBackgroundColor():cast.getBackgroundColor());
+        toolbar.setTitle(isDirector?director.getName():cast.getName());
         RecyclerView recyclerView = findViewById(R.id.recycleView_celebrity);
-
+        CommonDecoration decoration = new CommonDecoration(this,R.drawable.divider_celebrity_work,LinearLayoutManager.VERTICAL);
+        recyclerView.addItemDecoration(decoration);
         adapter = new MultiTypeAdapter();
         adapter.register(Celebrity.class, new CelebrityInfoBinder());
+        adapter.register(WorkResult.class, new CelebrityWorkBinder());
+        adapter.register(PhotoResult.class, new CelebrityPhotosBinder());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -91,6 +104,7 @@ public class CelebrityActivity extends BaseActivity implements CelebrityContract
         presenter.getCelebrityInfo(isDirector?director.getId():cast.getId());
 
         items = new Items();
+        adapter.setItems(items);
 
     }
 
@@ -104,11 +118,33 @@ public class CelebrityActivity extends BaseActivity implements CelebrityContract
         if (celebrity != null)
         {
             celebrity.setBackgroundColor(isDirector?director.getBackgroundColor():cast.getBackgroundColor());
-            Log.d(TAG,celebrity.getBackgroundColor()+"");
             items.add(celebrity);
             if (adapter != null)
             {
-                adapter.setItems(items);
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+    @Override
+    public void updateWork(WorkResult workResult) {
+        if (workResult != null)
+        {
+            items.add(workResult);
+            if (adapter != null)
+            {
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+    @Override
+    public void updatePhoto(PhotoResult photoResult) {
+        if (photoResult != null)
+        {
+            items.add(photoResult);
+            if (adapter != null)
+            {
                 adapter.notifyDataSetChanged();
             }
         }

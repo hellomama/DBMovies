@@ -73,8 +73,8 @@ public class LoadingView extends View implements View.OnClickListener{
             canvas.drawPath(path,paint);
             if (tickProgress <= 100)
             {
-                tickProgress++;
-                postInvalidateDelayed(20);
+                tickProgress += 2 ;
+                postInvalidate();
             }
         }
     }
@@ -93,7 +93,7 @@ public class LoadingView extends View implements View.OnClickListener{
     {
         animator = new ValueAnimator();
         animator.setIntValues(0,360);
-        animator.setDuration(2000);
+        animator.setDuration(1000);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {

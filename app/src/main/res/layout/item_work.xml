@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.constraint.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:paddingLeft="10dp"
+        android:id="@+id/layout_parent"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_avatar"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="80dp"
+            android:layout_height="120dp" />
+        <TextView
+            app:layout_constraintTop_toTopOf="@+id/img_avatar"
+            app:layout_constraintLeft_toRightOf="@+id/img_avatar"
+            android:id="@+id/text_title"
+            android:layout_marginLeft="20dp"
+            android:text="珍珠"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/text_role"
+            android:text="演员"
+            android:textSize="13sp"
+            app:layout_constraintLeft_toLeftOf="@+id/text_title"
+            app:layout_constraintBottom_toTopOf="@+id/text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="2018上映"
+            android:id="@+id/text_date"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_avatar"
+            app:layout_constraintLeft_toLeftOf="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+    </android.support.constraint.ConstraintLayout>
+    <View
+        android:layout_marginTop="10dp"
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</LinearLayout>

@@ -92,7 +92,7 @@ public class DetailActivity extends BaseActivity implements MoviesDetailContract
             MoviesDetailPresenter presenter = new MoviesDetailPresenter(this);
             presenter.getMovieDetail(movie.getId());
             toolbar.setTitle(movie.getTitle());
-
+            toolbar.setBackgroundColor(movie.getBackgroundColor());
         }
 
         items = new Items();

@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by dev on 2/1/18.
  */
 
-public class Cast extends BaseData implements Serializable {
+public class Cast extends BaseData {
     @SerializedName("avatars")
     @Expose
     private Avatars avatars;

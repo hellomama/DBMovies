@@ -22,9 +22,9 @@ public class Celebrity {
     @SerializedName("name")
     @Expose
     private String name;
-//    @SerializedName("works")
-//    @Expose
-//    private List<Work> works = null;
+    @SerializedName("works")
+    @Expose
+    private List<Work> works = null;
     @SerializedName("name_en")
     @Expose
     private String nameEn;
@@ -104,13 +104,13 @@ public class Celebrity {
         this.name = name;
     }
 
-//    public List<Work> getWorks() {
-//        return works;
-//    }
+    public List<Work> getWorks() {
+        return works;
+    }
 
-//    public void setWorks(List<Work> works) {
-//        this.works = works;
-//    }
+    public void setWorks(List<Work> works) {
+        this.works = works;
+    }
 
     public String getNameEn() {
         return nameEn;
@@ -229,7 +229,7 @@ public class Celebrity {
                 ", mobileUrl='" + mobileUrl + '\'' +
                 ", akaEn=" + akaEn +
                 ", name='" + name + '\'' +
-//                ", works=" + works +
+                ", works=" + works +
                 ", nameEn='" + nameEn + '\'' +
                 ", gender='" + gender + '\'' +
                 ", professions=" + professions +

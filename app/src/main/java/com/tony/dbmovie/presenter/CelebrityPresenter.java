@@ -2,6 +2,8 @@ package com.tony.dbmovie.presenter;
 
 import com.tony.dbmovie.contract.CelebrityContract;
 import com.tony.dbmovie.data.Celebrity;
+import com.tony.dbmovie.data.PhotoResult;
+import com.tony.dbmovie.data.WorkResult;
 import com.tony.dbmovie.model.CelebrityModel;
 
 /**
@@ -26,8 +28,29 @@ public class CelebrityPresenter implements CelebrityContract.Presenter, OnCelebr
     }
 
     @Override
-    public void onSuccess(Celebrity celebrity) {
+    public void getWorks(String id) {
+        model.loadCelebrity(id);
+    }
+
+    @Override
+    public void onCelebritySuccess(Celebrity celebrity) {
         view.updateCelebrity(celebrity);
+    }
+
+
+    @Override
+    public void onWorkSuccess(WorkResult workResult) {
+        view.updateWork(workResult);
+    }
+
+    @Override
+    public void onPhotoSuccess(PhotoResult photoResult) {
+        view.updatePhoto(photoResult);
+    }
+
+    @Override
+    public void getPhoto(String id) {
+        model.loadPhoto(id);
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -48,7 +49,7 @@ public class CelebrityInfoBinder extends ItemViewBinder<Celebrity,CelebrityInfoB
         ImageView imageView;
         TextView name,name_en,birthday,home,identify;
         ExpandTextView expandTextView;
-        ConstraintLayout layout;
+        LinearLayout layout;
         public CelebrityItemHolder(View itemView) {
             super(itemView);
 
@@ -59,7 +60,7 @@ public class CelebrityInfoBinder extends ItemViewBinder<Celebrity,CelebrityInfoB
             home = itemView.findViewById(R.id.text_home);
             identify = itemView.findViewById(R.id.text_identity);
             expandTextView = itemView.findViewById(R.id.expand_text);
-            layout = itemView.findViewById(R.id.layout_header);
+            layout = itemView.findViewById(R.id.layout_info);
         }
     }
 }
