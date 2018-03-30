@@ -74,8 +74,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoHolder>
 
             if (isAllPhoto) {
                 int screenWidth = Utils.screenWidth();
-                int padding = Utils.dimenToPixel(R.dimen.photo_padding);
-                int size = (screenWidth - padding * 4) * 3 / 10;
+                int size = (screenWidth) / 3 ;
 
                 LinearLayout.LayoutParams imageParams = (LinearLayout.LayoutParams) imageView.getLayoutParams();
                 if (imageParams != null) {
