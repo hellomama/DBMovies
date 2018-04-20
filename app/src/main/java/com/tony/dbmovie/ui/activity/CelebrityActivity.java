@@ -22,6 +22,7 @@ import com.tony.dbmovie.ui.binder.CelebrityInfoBinder;
 import com.tony.dbmovie.ui.binder.CelebrityPhotosBinder;
 import com.tony.dbmovie.ui.binder.CelebrityWorkBinder;
 import com.tony.dbmovie.widget.CommonDecoration;
+import com.tony.dbmovie.widget.OverLayCardLayoutManager;
 
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
@@ -82,14 +83,14 @@ public class CelebrityActivity extends BaseActivity implements CelebrityContract
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_celebrity);
+        setContentView(R.layout.activity_base);
         parseExtra();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         initToolbarNav(toolbar);
         toolbar.setBackgroundColor(isDirector?director.getBackgroundColor():cast.getBackgroundColor());
         toolbar.setTitle(isDirector?director.getName():cast.getName());
-        RecyclerView recyclerView = findViewById(R.id.recycleView_celebrity);
+        RecyclerView recyclerView = findViewById(R.id.list);
         CommonDecoration decoration = new CommonDecoration(this,R.drawable.divider_celebrity_work,LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(decoration);
         adapter = new MultiTypeAdapter();

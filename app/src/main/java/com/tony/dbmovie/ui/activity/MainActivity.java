@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_base);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Popular Movies");
-        RecyclerView listView = findViewById(R.id.list_movies);
+        RecyclerView listView = findViewById(R.id.list);
         listView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new MultiTypeAdapter();

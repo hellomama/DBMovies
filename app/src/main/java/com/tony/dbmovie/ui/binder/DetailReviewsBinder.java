@@ -2,9 +2,11 @@ package com.tony.dbmovie.ui.binder;
 
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.MovieDetail;
 import com.tony.dbmovie.data.PopularComment;
+import com.tony.dbmovie.ui.activity.CommentDetailActivity;
 
 import me.drakeet.multitype.ItemViewBinder;
 
@@ -32,6 +35,7 @@ public class DetailReviewsBinder extends ItemViewBinder<PopularComment,DetailRev
         ImageView avatar;
         TextView userName,review_content,review_date,review_like;
         RatingBar ratingBar;
+        ConstraintLayout parent;
         public ReviewsViewHolder(View itemView) {
             super(itemView);
             avatar = itemView.findViewById(R.id.img_avatar);
@@ -40,6 +44,7 @@ public class DetailReviewsBinder extends ItemViewBinder<PopularComment,DetailRev
             review_date = itemView.findViewById(R.id.text_date);
             review_like = itemView.findViewById(R.id.text_like);
             ratingBar = itemView.findViewById(R.id.rating_bar);
+            parent = itemView.findViewById(R.id.layout_parent);
         }
     }
 
@@ -52,7 +57,7 @@ public class DetailReviewsBinder extends ItemViewBinder<PopularComment,DetailRev
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final ReviewsViewHolder holder, @NonNull PopularComment item) {
+    protected void onBindViewHolder(@NonNull final ReviewsViewHolder holder, @NonNull final PopularComment item) {
         holder.review_content.setText(item.getContent());
         holder.userName.setText(item.getAuthor().getName());
         holder.ratingBar.setRating(Float.parseFloat(String.valueOf(item.getRating().getValue())));
@@ -69,6 +74,14 @@ public class DetailReviewsBinder extends ItemViewBinder<PopularComment,DetailRev
                         RoundedBitmapDrawableFactory.create(holder.avatar.getContext().getResources(), resource);
                 circularBitmapDrawable.setCircular(true);
                 holder.avatar.setImageDrawable(circularBitmapDrawable);
+            }
+        });
+
+        holder.parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("popular comment",item.toString());
+                CommentDetailActivity.start(holder.parent.getContext(),item.getSubjectId());
             }
         });
     }

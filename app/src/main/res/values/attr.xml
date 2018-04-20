@@ -5,4 +5,7 @@
         <attr name="lightStar" format="reference" />
         <attr name="starSize" format="dimension"/>
     </declare-styleable>
+    <declare-styleable name="FlowLayout">
+        <attr name="lineSpacing" format="dimension"/>
+    </declare-styleable>
 </resources>

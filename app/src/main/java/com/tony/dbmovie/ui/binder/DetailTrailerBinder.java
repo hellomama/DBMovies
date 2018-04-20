@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.data.MovieDetail;
-import com.tony.dbmovie.ui.adapter.CastAdapter;
 import com.tony.dbmovie.ui.adapter.TrailerAdapter;
 import com.tony.dbmovie.widget.CommonDecoration;
 

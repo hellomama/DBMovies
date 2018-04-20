@@ -85,4 +85,17 @@ public class PopularComment {
     public void setId(String id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "PopularComment{" +
+                "rating=" + rating +
+                ", usefulCount=" + usefulCount +
+                ", author=" + author +
+                ", subjectId='" + subjectId + '\'' +
+                ", content='" + content + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }
