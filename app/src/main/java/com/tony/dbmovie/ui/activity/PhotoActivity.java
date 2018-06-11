@@ -45,14 +45,14 @@ public class PhotoActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photos);
+        setContentView(R.layout.activity_base);
         parseExtra();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         initToolbarNav(toolbar);
         toolbar.setTitle(String.format(FORMAT,photoResult.getCount()));
 
-        RecyclerView recyclerView = findViewById(R.id.list_photo);
+        RecyclerView recyclerView = findViewById(R.id.list);
         recyclerView.setLayoutManager(new GridLayoutManager(this,3));
         PhotoAdapter adapter = new PhotoAdapter(this,true);
         recyclerView.setAdapter(adapter);

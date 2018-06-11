@@ -13,6 +13,6 @@ import retrofit2.http.Query;
 
 public interface ReviewsApi {
 
-    @GET("v2/movie/{id}/reviews?apikey=0b2bdeda43b5688921839c8ecb20399b")
-    Flowable<MovieResult> getReviews(@Path("id") String movieId, @Query("start") int aStart, @Query("count") int aCount);
+    @GET("v2/movie/subject/comment/{id}/comments?apikey=0b2bdeda43b5688921839c8ecb20399b")
+    Flowable<MovieResult> getMovieReviews(@Path("id") String movieId, @Query("start") int aStart, @Query("count") int aCount);
 }

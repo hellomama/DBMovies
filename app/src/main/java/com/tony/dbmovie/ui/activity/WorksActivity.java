@@ -45,14 +45,14 @@ public class WorksActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_works);
+        setContentView(R.layout.activity_base);
         parseExtra();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         initToolbarNav(toolbar);
         toolbar.setTitle(String.format(FORMAT,workResult.getCelebrity().getName()));
 
-        RecyclerView recyclerView = findViewById(R.id.list_work);
+        RecyclerView recyclerView = findViewById(R.id.list);
         AllWorksAdapter adapter = new AllWorksAdapter(this);
         recyclerView.setAdapter(adapter);
         adapter.setWorkList(workResult.getWorks());

@@ -7,10 +7,21 @@
 
     <include
         layout="@layout/toolbar"/>
-    <com.tony.dbmovie.widget.LoadingView
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:layout_height="match_parent">
+        <com.tony.dbmovie.widget.LoadingView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            />
+        <com.tony.dbmovie.widget.CommentDividerLine
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    </LinearLayout>
+
 
 
 </android.support.design.widget.CoordinatorLayout>

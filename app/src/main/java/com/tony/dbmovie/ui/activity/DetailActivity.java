@@ -22,6 +22,7 @@ import com.tony.dbmovie.ui.binder.DetailHeaderBinder;
 import com.tony.dbmovie.ui.binder.DetailHeader;
 import com.tony.dbmovie.ui.binder.DetailReviewsBinder;
 import com.tony.dbmovie.ui.binder.DetailSummaryBinder;
+import com.tony.dbmovie.ui.binder.DetailTagsBinder;
 import com.tony.dbmovie.ui.binder.DetailTrailerBinder;
 
 import me.drakeet.multitype.ClassLinker;
@@ -58,16 +59,19 @@ public class DetailActivity extends BaseActivity implements MoviesDetailContract
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_base);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         initToolbarNav(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.list_movies_detail);
+        RecyclerView recyclerView = findViewById(R.id.list);
         adapter = new MultiTypeAdapter();
         adapter.register(Movie.class, new DetailHeaderBinder());
         adapter.register(MovieDetail.class).
-                to(new DetailSummaryBinder(),new DetailCastBinder(),new DetailTrailerBinder())
+                to(new DetailSummaryBinder(),
+                        new DetailCastBinder(),
+                        new DetailTrailerBinder(),
+                        new DetailTagsBinder())
                 .withClassLinker(new ClassLinker<MovieDetail>() {
                     @NonNull
                     @Override
@@ -77,8 +81,10 @@ public class DetailActivity extends BaseActivity implements MoviesDetailContract
                             return DetailSummaryBinder.class;
                         }else if (position == 3){
                             return DetailCastBinder.class;
-                        }else {
+                        }else if (position == 5){
                             return DetailTrailerBinder.class;
+                        }else {
+                            return DetailTagsBinder.class;
                         }
                     }
                 });
@@ -111,6 +117,7 @@ public class DetailActivity extends BaseActivity implements MoviesDetailContract
         items.add(new EmptyClass("演职人员",true));
         items.add(detail);
         items.add(new EmptyClass("预告片与剧照",true));
+        items.add(detail);
         items.add(detail);
         items.add(new EmptyClass("影评","写影评"));
         items.addAll(detail.getPopularComments());
