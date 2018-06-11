@@ -32,7 +32,7 @@ public class MoviesDetailPresenter implements MoviesDetailContract.Presenter, On
     }
 
     @Override
-    public void onFail() {
-        view.loadMovieFail();
+    public void onFail(String msg) {
+        view.loadMovieFail(msg);
     }
 }

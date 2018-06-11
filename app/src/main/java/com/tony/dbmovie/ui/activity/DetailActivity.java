@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.tony.dbmovie.R;
 import com.tony.dbmovie.contract.MoviesDetailContract;
@@ -117,8 +118,8 @@ public class DetailActivity extends BaseActivity implements MoviesDetailContract
     }
 
     @Override
-    public void loadMovieFail() {
-
+    public void loadMovieFail(String msg) {
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:checked="true"
+        android:id="@+id/tab_movie"
+        android:icon="@mipmap/tab_movie"
+        android:title="Movie" />
+    <item
+        android:id="@+id/tab_book"
+        android:icon="@mipmap/tab_book"
+        android:title="Book" />
+    <item
+    android:id="@+id/tab_music"
+    android:icon="@mipmap/tab_music"
+    android:title="Music" />
+
+
+</menu>

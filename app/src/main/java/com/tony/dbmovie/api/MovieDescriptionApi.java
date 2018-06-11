@@ -3,6 +3,7 @@ package com.tony.dbmovie.api;
 import com.tony.dbmovie.data.MovieDetail;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -14,6 +15,6 @@ import retrofit2.http.Query;
 public interface MovieDescriptionApi {
 
     @GET("v2/movie/subject/{id}?apikey=0b2bdeda43b5688921839c8ecb20399b")
-    Flowable<MovieDetail> getMovie(@Path("id") String movieId, @Query("city") String city);
+    Observable<MovieDetail> getMovie(@Path("id") String movieId, @Query("city") String city);
 
 }

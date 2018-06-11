@@ -6,4 +6,5 @@ package com.tony.dbmovie.common;
 
 public class Common {
     public static final String EXTRA_DATA = "data";
+    public static final String EXTRA_ID = "id";
 }

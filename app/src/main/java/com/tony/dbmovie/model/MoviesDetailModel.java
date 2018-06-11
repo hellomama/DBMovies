@@ -3,6 +3,7 @@ package com.tony.dbmovie.model;
 import com.tony.dbmovie.api.MovieDescriptionApi;
 import com.tony.dbmovie.contract.MoviesDetailContract;
 import com.tony.dbmovie.data.MovieDetail;
+import com.tony.dbmovie.network.CallBackWrapper;
 import com.tony.dbmovie.network.NetworkHelper;
 import com.tony.dbmovie.presenter.OnMovieDetailListener;
 import com.tony.dbmovie.presenter.OnMoviesListener;
@@ -11,6 +12,7 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
@@ -40,14 +42,20 @@ public class MoviesDetailModel implements MoviesDetailContract.Model {
         api.getMovie(movieId,"guangzhou")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<MovieDetail>() {
+                .subscribe(new CallBackWrapper<MovieDetail>()
+                {
                     @Override
-                    public void onSubscribe(Subscription s) {
-                        s.request(Long.MAX_VALUE);
+                    public void onBegin(Disposable d) {
+                        super.onBegin(d);
                     }
 
                     @Override
-                    public void onNext(MovieDetail movieDetail) {
+                    public void onCancel(boolean isCancel) {
+                        super.onCancel(isCancel);
+                    }
+
+                    @Override
+                    public void onSuccess(MovieDetail movieDetail) {
                         if (listener != null)
                         {
                             listener.onSuccess(movieDetail);
@@ -55,17 +63,39 @@ public class MoviesDetailModel implements MoviesDetailContract.Model {
                     }
 
                     @Override
-                    public void onError(Throwable t) {
+                    public void onError(String msg, int code) {
                         if (listener != null)
                         {
-                            listener.onFail();
+                            listener.onFail(msg);
                         }
                     }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
                 });
+//                .subscribe(new Subscriber<MovieDetail>() {
+//                    @Override
+//                    public void onSubscribe(Subscription s) {
+//                        s.request(Long.MAX_VALUE);
+//                    }
+//
+//                    @Override
+//                    public void onNext(MovieDetail movieDetail) {
+//                        if (listener != null)
+//                        {
+//                            listener.onSuccess(movieDetail);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable t) {
+//                        if (listener != null)
+//                        {
+//                            listener.onFail();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//
+//                    }
+//                });
     }
 }

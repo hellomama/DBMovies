@@ -8,6 +8,7 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="media_controller_bg">#55000000</color>
+    <color name="GC01">#00000000</color>
 
 
 </resources>

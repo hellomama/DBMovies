@@ -9,5 +9,5 @@ import com.tony.dbmovie.data.MovieDetail;
 
 public interface OnMovieDetailListener {
     void onSuccess(MovieDetail detail);
-    void onFail();
+    void onFail(String msg);
 }

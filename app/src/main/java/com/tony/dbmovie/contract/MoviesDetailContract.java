@@ -15,7 +15,7 @@ public interface MoviesDetailContract {
     interface View {
         void loadingMoviesDetail();
         void updateMovieDetail(MovieDetail detail);
-        void loadMovieFail();
+        void loadMovieFail(String msg);
     }
 
     interface Presenter {
